@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Kidest Dereje Alemayehu — Cybersecurity Portfolio</title>
+
+  <!-- Fonts: Poppins (headings), Inter (body), JetBrains Mono (terminal vibe) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <meta name="description" content="Kidest Dereje Alemayehu — Cybersecurity student @ Bahir Dar University (4th year), Parrot OS user, OWASP ZAP, Linux-focused.">
+
+  <style>
+    :root{
+      --bg-0:#0b0f14; --bg-1:#0f1621; --bg-2:#0c121a;
+      --text:#e8f0ff; --muted:#9fb0c7;
+      --accent:#2b7cff; --accent-2:#2ef2a3;
+      --glass:rgba(255,255,255,0.08);
+      --radius:20px;
+      --mono:"JetBrains Mono", monospace;
+      --head:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text);
+      background:
+        radial-gradient(1200px 700px at -10% -10%, #1b2a40 0%, transparent 60%),
+        radial-gradient(900px 600px at 110% -20%, #14283e 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-0), #0a1016 60%, #070c12 100%);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    /* Enhanced for attractiveness */
+    .card:hover {
+      box-shadow: 0 12px 48px rgba(43,124,255,0.3);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      transform: translateY(-5px);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #071029;
+    }
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(150%) blur(10px);
+      background:linear-gradient(180deg, rgba(15,22,33,.95), rgba(15,22,33,.65));
+      border-bottom:1px solid var(--glass);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:12px;
+      background:conic-gradient(from 210deg, var(--accent), #7cf5ff, var(--accent-2));
+      display:grid;place-items:center;color:#07111f;font-weight:800;font-family:var(--mono);
+      box-shadow:0 6px 24px rgba(0,0,0,.35), inset 0 0 18px rgba(0,0,0,.25);
+      animation: logo-spin 4s linear infinite alternate;
+    }
+    @keyframes logo-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .brand-title{font-weight:800;letter-spacing:.2px;font-family:var(--head)}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
+    nav a:hover{color:var(--text); text-shadow: 0 0 8px var(--accent);}
+
+    /* Cards & grids */
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid var(--glass);
+      border-radius:var(--radius);
+      box-shadow:0 10px 40px rgba(0,0,0,.45);
+      padding:28px;
+    }
+    .grid{display:grid;gap:22px}
+
+    /* HERO */
+    .hero{margin-top:24px; grid-template-columns:1.2fr .8fr}
+    .hero-left h1{
+      margin:10px 0 6px; font-size:42px; line-height:1.15; font-weight:800;
+      font-family:var(--head); letter-spacing:.2px;
+    }
+    .terminal-line{font-family:var(--mono);color:var(--muted);font-size:16px;opacity:.9}
+    #typing-text{
+      font-family:var(--mono);font-size:30px;margin-top:8px;display:inline-block;position:relative;
+      will-change: contents;
+    }
+    #typing-text::after{
+      content:""; width:10px;height:1.2em; border-left:2px solid var(--accent-2);
+      display:inline-block; margin-left:6px; animation:blink .9s steps(1,end) infinite; position:relative; top:3px
+    }
+    @keyframes blink{50%{opacity:0}}
+    .hero-buttons{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;
+      text-decoration:none;font-weight:700;border:1px solid transparent;cursor:pointer;
+      transition:transform .15s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .btn-primary{background:var(--accent);color:#071029; box-shadow:0 4px 15px rgba(43,124,255,0.3);}
+    .btn-ghost{background:transparent;color:var(--muted);border-color:var(--glass)}
+    .btn:hover{filter:brightness(1.07); transform:translateY(-2px); box-shadow:0 6px 20px rgba(43,124,255,0.4);}
+    .btn-primary:hover{box-shadow:0 6px 25px rgba(43,124,255,0.5);}
+
+    /* Photo */
+    .hero-photo{
+      position:relative;overflow:hidden;border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      display:grid;place-items:center;isolation:isolate
+    }
+    .hero-photo img{width:100%;height:auto;display:block;border-radius:14px;filter:saturate(1.05) contrast(1.02)}
+    .hero-photo::after{
+      content:""; position:absolute; inset:auto -40% -40% auto; width:70%; height:70%;
+      background:radial-gradient(400px 220px at 70% 20%, rgba(255,255,255,.10), transparent 60%);
+      z-index:-1; filter:blur(6px); animation:floatglow 6s ease-in-out infinite alternate
+    }
+    @keyframes floatglow{0%{transform:translate(0,0)}100%{transform:translate(10px,-10px)}}
+
+    /* SECTIONS */
+    .section{grid-template-columns:2fr 1fr}
+    .section h3{
+      font-family:var(--head); letter-spacing:.3px; margin:0 0 6px;
+      font-weight:800;
+    }
+    .about .timeline{margin-top:6px;border-left:2px solid var(--glass);padding-left:16px}
+    .timeline-item{
+      opacity:0;
+      transform:translateX(-40px) scale(0.9) rotate(2deg);
+      visibility:hidden;
+      margin:16px 0;
+    }
+    .timeline-item.visible{
+      opacity:1;
+      transform:translateX(0) scale(1) rotate(0);
+      visibility:visible;
+      animation:fadeSlideIn 0.9s ease forwards;
+    }
+    @keyframes fadeSlideIn {
+      0% { opacity: 0; transform: translateX(-40px) scale(0.9) rotate(2deg); visibility: hidden; }
+      100% { opacity: 1; transform: translateX(0) scale(1) rotate(0); visibility: visible; }
+    }
+    .timeline-item:nth-child(1) { animation-delay: 0.25s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.5s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.75s; }
+    .timeline-item:nth-child(4) { animation-delay: 1s; }
+    .timeline-item:nth-child(5) { animation-delay: 1.25s; }
+    .timeline-item:nth-child(6) { animation-delay: 1.5s; }
+    .timeline-item:nth-child(7) { animation-delay: 1.75s; }
+    .timeline-item strong{display:block;color:#dbeeff}
+    .timeline-item small{color:var(--muted);display:block;margin-top:6px}
+
+    /* Skills section */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .skill-tile {
+      position: relative;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid var(--glass);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      transition: transform .2s ease, box-shadow .2s ease;
+      overflow: hidden;
+      text-align: center;
+    }
+    .skill-tile:hover {
+      transform: translateY(-4px) rotate(1deg);
+      box-shadow: 0 14px 40px rgba(0,0,0,.45), 0 0 30px rgba(255,255,255,.08), 0 0 50px rgba(43,124,255,0.2);
+    }
+    .skill-tile .icon { font-size: 32px; margin-bottom: 8px; }
+    .skill-tile .title { font-weight: 800; margin: 0 0 6px; font-family: var(--head); letter-spacing: .2px; }
+    .skill-tile .desc { color: var(--muted); margin-top: 8px; font-size: 14px; }
+    .progress-bar {
+      height: 8px;
+      background: var(--glass);
+      border-radius: 4px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.5s ease;
+    }
+
+    /* Tiles (Projects & Write-ups) */
+    .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .tile{
+      position:relative; padding:18px; border-radius:14px; border:1px solid var(--glass);
+      background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015));
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      overflow:hidden;
+    }
+    .tile:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.25); box-shadow:0 14px 40px rgba(0,0,0,.45), 0 0 30px rgba(255,255,255,.08), 0 0 50px rgba(43,124,255,0.2);}
+    .tile::before{
+      content:""; position:absolute; inset:-1px; border-radius:14px;
+      background:conic-gradient(from 180deg, transparent, rgba(255,255,255,.18), transparent 30%);
+      filter:blur(14px); opacity:0; transition:opacity .2s ease; pointer-events:none;
+    }
+    .tile:hover::before{opacity:1}
+    .tile .title{font-weight:800;margin:0 0 6px; font-family:var(--head); letter-spacing:.2px}
+    .tile .meta{font-family:var(--mono); font-size:12px; color:var(--muted)}
+    .tile .desc{color:var(--muted); margin-top:8px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{
+      font-size:12px; font-family:var(--mono);
+      color:#09131f; background:linear-gradient(90deg,#ffffff,#e6f0ff);
+      padding:4px 10px; border-radius:999px; font-weight:800; border:1px solid rgba(255,255,255,.5);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .tag:hover{transform:scale(1.05); box-shadow:0 2px 8px rgba(43,124,255,0.3);}
+    .tile .actions{display:flex;gap:10px;margin-top:12px}
+    .tile .actions .btn{padding:8px 12px;border-radius:10px;font-weight:700}
+
+    /* Certificates */
+    .cert-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--glass);gap:16px;flex-wrap:wrap}
+    .cert-actions{display:flex;gap:10px}
+    .cert-preview {
+      max-width: 100px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(43,124,255,0.2);
+      transition: transform 0.3s ease;
+    }
+    .cert-preview:hover {
+      transform: scale(1.1);
+    }
+
+    /* Back-to-top minimal dot */
+    #toTop{
+      position:fixed; right:22px; bottom:22px; width:42px; height:42px; border-radius:999px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid var(--glass);
+      display:grid; place-items:center;
+      box-shadow:0 8px 24px rgba(0,0,0,.45);
+      cursor:pointer; opacity:0; transform:scale(.8);
+      transition:opacity .25s ease, transform .25s ease, filter .2s ease;
+      backdrop-filter: blur(6px) saturate(120%);
+      z-index:60;
+    }
+    .toTop i{font-size:14px; color:var(--text); opacity:.8}
+    #toTop:hover{filter:brightness(1.1); transform:scale(1.05);}
+    #toTop.show{opacity:1; transform:scale(1)}
+
+    footer{margin:28px 0 40px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Enhanced Responsive */
+    @media (max-width:1020px){
+      .hero{grid-template-columns:1fr}
+      .section{grid-template-columns:1fr}
+      .grid-tiles{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr))}
+      .skills-grid{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr))}
+    }
+    @media (max-width:640px){
+      .grid-tiles,.skills-grid{grid-template-columns:1fr}
+      #typing-text{font-size:26px}
+      .hero-left h1{font-size:34px}
+      .nav-inner{flex-direction:column; gap:20px; padding:14px}
+      nav ul{flex-wrap:wrap; justify-content:center; gap:12px}
+      .container{padding:16px}
+      .card{padding:20px}
+      .hero-buttons{justify-content:center}
+      .cert-item{flex-direction:column; align-items:flex-start}
+      .cert-actions{justify-content:flex-start; width:100%; margin-top:10px}
+      form{max-width:100%}
+      .cert-preview{max-width:80px}
+    }
+    @media (max-width:480px){
+      .hero-left h1{font-size:28px}
+      #typing-text{font-size:22px}
+      .tile,.skill-tile{padding:14px}
+      .btn{padding:10px 14px}
+      .cert-preview{max-width:60px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo">&lt;/&gt;</div>
+        <div>
+          <div class="brand-title">Kidest Dereje Alemayehu</div>
+          <div style="font-size:12px;color:var(--muted)">Cybersecurity Student @ Bahir Dar University 🛡️🔒</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home 🏠</a></li>
+          <li><a href="#about">About 🧑‍💻</a></li>
+          <li><a href="#skills">Skills 🌐</a></li>
+          <li><a href="#projects">Projects 🔧</a></li>
+          <li><a href="#writeups">Write-ups 📝</a></li>
+          <li><a href="#certificates">Certificates 🏆</a></li>
+          <li><a href="#contact">Contact 📧</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- HERO -->
+    <section id="home" class="grid hero">
+      <div class="card hero-left">
+        <div class="terminal-line">&gt; Initializing profile... 💻🔍</div>
+        <h1>Hi, I'm <span style="color:var(--accent)">Kidest</span> 🔐</h1>
+        <div id="typing-text" aria-live="polite"></div>
+
+        <div style="margin-top:12px; padding:12px; background:rgba(43,124,255,0.1); border-left:4px solid var(--accent); border-radius:8px;">
+          <p style="margin:0; color:var(--accent-2); font-weight:600; font-size:18px;">
+            🔐 4th Year Cybersecurity Student @ Bahir Dar University 🏫
+          </p>
+        </div>
+
+        <p style="margin-top:12px;color:var(--muted);max-width:60ch">
+          I'm a <strong>4th-year Cybersecurity Student</strong> at <strong>Bahir Dar University</strong> (started 2022, graduating 2026). Daily <strong>Parrot OS</strong> user with <strong>OWASP ZAP</strong> experience from my internship at <strong>Paperless Company</strong>. Focused on Linux, web app security, and clear remediation reporting. 🛡️💻
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary"><i class="fa-solid fa-user"></i> Explore My Journey 🚀</a>
+          <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-envelope"></i> Contact 📧</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">
+          <strong>Stack:</strong> Parrot OS 🐦 · OWASP ZAP 🕵️ · Linux 🐧 · Python 🐍 · Bash 🔧
+        </div>
+      </div>
+
+      <aside class="card hero-photo" aria-label="profile photo">
+        <img src="assets/kidest.jpg" alt="Kidest Dereje Alemayehu"/>
+      </aside>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card" style="margin-top:18px">
+      <h3 style="margin-top:0">🌐 Cybersecurity Skills 🖥️</h3>
+      <div class="skills-grid">
+        <div class="skill-tile">
+          <div class="icon">🔍</div>
+          <h4 class="title">Web App Security</h4>
+          <p class="desc">Vulnerability scanning with OWASP ZAP and remediation reporting. 🛡️</p>
+          <div class="progress-bar"><div class="progress" style="width:70%"></div></div>
+        </div>
+        <div class="skill-tile">
+          <div class="icon">🐧</div>
+          <h4 class="title">Linux Proficiency</h4>
+          <p class="desc">Daily Parrot OS usage for security tasks and environment setup. ⚙️</p>
+          <div class="progress-bar"><div class="progress" style="width:80%"></div></div>
+        </div>
+        <div class="skill-tile">
+          <div class="icon">🕵️</div>
+          <h4 class="title">Penetration Testing</h4>
+          <p class="desc">Practical skills from TryHackMe labs and CTF challenges. 🎯</p>
+          <div class="progress-bar"><div class="progress" style="width:65%"></div></div>
+        </div>
+        <div class="skill-tile">
+          <div class="icon">🐍</div>
+          <h4 class="title">Scripting & Automation</h4>
+          <p class="desc">Python and Bash scripts for reconnaissance and automation. 🔧</p>
+          <div class="progress-bar"><div class="progress" style="width:70%"></div></div>
+        </div>
+        <div class="skill-tile">
+          <div class="icon">☁️</div>
+          <h4 class="title">Cloud Security</h4>
+          <p class="desc">Basics of securing cloud environments with Azure. 🔒</p>
+          <div class="progress-bar"><div class="progress" style="width:60%"></div></div>
+        </div>
+        <div class="skill-tile">
+          <div class="icon">🌐</div>
+          <h4 class="title">Network Security</h4>
+          <p class="desc">Understanding of networking concepts and protocols. 🖥️</p>
+          <div class="progress-bar"><div class="progress" style="width:65%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="grid section" style="margin-top:22px">
+      <div class="card about" id="about">
+        <h3>About Me 🧑‍💻</h3>
+        <p style="color:var(--muted);margin-top:8px">
+          I'm <strong>Kidest Dereje Alemayehu</strong>, a cybersecurity student focused on practical skills: Linux, scripting, and web application security. I enjoy testing, documenting, and clearly communicating findings to help teams fix issues quickly. 🔍🛡️
+        </p>
+
+        <h4 style="margin:16px 0 8px; font-family:var(--head); letter-spacing:.2px; color:var(--accent)">🔐 My Cybersecurity Journey 🚀</h4>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>🎓 2022 — Began Cybersecurity Journey @ Bahir Dar University</strong>
+            <small>Started my focused cybersecurity studies, diving into networking, security principles, and operating systems. 🔐🛡️</small>
+          </div>
+          <div class="timeline-item">
+            <strong>🐧 2023 — Daily Linux (Parrot OS)</strong>
+            <small>Adopted Parrot OS as my primary operating system for security tools, networking, and daily workflow optimization. 🛡️💻</small>
+          </div>
+          <div class="timeline-item">
+            <strong>📚 2023–2024 — Hands-on Labs (TryHackMe-style)</strong>
+            <small>Enhanced practical skills through intensive labs and capture-the-flag challenges, improving understanding of attack/defense techniques. 🎯🕵️</small>
+          </div>
+          <div class="timeline-item">
+            <strong>💻 2023–2024 — Scripting (Python & Bash)</strong>
+            <small>Developed automation scripts for reconnaissance tasks and environment setup, boosting efficiency in security assessments. ⚡🐍</small>
+          </div>
+          <div class="timeline-item">
+            <strong>🎬 2024–2025 — YouTube Learning</strong>
+            <small>Continuously learning from cybersecurity experts through tutorials, case studies, and practical demonstrations. 📺🧠</small>
+          </div>
+          <div class="timeline-item">
+            <strong>🏢 2025 — Internship: Paperless Company</strong>
+            <small>Gained hands-on experience in web application security testing using OWASP ZAP and writing detailed remediation reports. 💻🔍</small>
+          </div>
+          <div class="timeline-item">
+            <strong>🚀 2026 — Graduation & Next Step</strong>
+            <small>Preparing to enter the professional world as a penetration tester or security operations center analyst. 🌟🏆</small>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" role="complementary">
+        <h3>Quick Info 📊</h3>
+        <div style="color:var(--muted);display:grid;gap:8px">
+          <div><strong>Location:</strong> Ethiopia — Bahir Dar University 🌍</div>
+          <div><strong>OS:</strong> Parrot OS 🐦</div>
+          <div><strong>Year:</strong> 4th Year (Graduate 2026) 📅</div>
+          <div><strong>Certificates:</strong> Udacity, TryHackMe, API Fundamentals, Azure Security, Linux Fundamentals, Machine Learning 🏆</div>
+          <div><strong>Email:</strong> kidistdereje084@gmail.com 📧</div>
+        </div>
+        <div style="margin-top:14px">
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Send a message ✉️</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card" style="margin-top:18px">
+      <h3 style="margin-top:0">🔧 Projects 💻</h3>
+      <div class="grid-tiles">
+        <article class="tile">
+          <h4 class="title">🛡️ OWASP ZAP Security Lab</h4>
+          <div class="meta">Tools: ZAP · Parrot OS</div>
+          <p class="desc">Hands-on security lab using OWASP ZAP for web app testing and vulnerability scanning. 🕵️🔍</p>
+          <div class="tags"><span class="tag">Web Pentesting</span><span class="tag">OWASP</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://github.com/Kidest-08/security-lab.git" target="_blank" rel="noopener noreferrer">View on GitHub 👀</a>
+          </div>
+        </article>
+
+        <article class="tile">
+          <h4 class="title">🐧 Linux Exploration & Toolkit</h4>
+          <div class="meta">Tools: Parrot OS · Bash</div>
+          <p class="desc">Daily Linux usage, environment setup, and small shell helpers. 🐧🔧</p>
+          <div class="tags"><span class="tag">Linux</span><span class="tag">Bash</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" onclick="alert('Building Something Awesome — Stay Tuned');return false;">View 👀</a>
+          </div>
+        </article>
+
+        <article class="tile">
+          <h4 class="title">🐍 Password Analyzer</h4>
+          <div class="meta">Tools: Python · CLI</div>
+          <p class="desc">A Python-based tool to analyze password strength and suggest improvements. 🐍🔒</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Security</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://github.com/Kidest-08/PasswordAnalyzer.git" target="_blank" rel="noopener noreferrer">View on GitHub 👀</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WRITE-UPS -->
+    <section id="writeups" class="card" style="margin-top:18px">
+      <h3 style="margin-top:0">📝 Write-ups 🖊️</h3>
+      <div class="grid-tiles">
+        <article class="tile">
+          <h4 class="title"><i class="fa-solid fa-terminal"></i> ZAP Scanning Checklist</h4>
+          <div class="meta">log: web-app · status: draft</div>
+          <p class="desc">Quick workflow for passive/active scans and documenting findings. 📋🔍</p>
+          <div class="tags"><span class="tag">ZAP</span><span class="tag">Checklist</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" onclick="alert('Building Something Awesome — Stay Tuned');return false;">Open 📖</a>
+          </div>
+        </article>
+
+        <article class="tile">
+          <h4 class="title"><i class="fa-solid fa-lock"></i> Parrot OS Setup Notes</h4>
+          <div class="meta">log: linux · status: draft</div>
+          <p class="desc">My preferred tools, configs, and shortcuts for Parrot OS. 🐦⚙️</p>
+          <div class="tags"><span class="tag">Parrot</span><span class="tag">Linux</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" onclick="alert('Building Something Awesome — Stay Tuned');return false;">Open 📖</a>
+          </div>
+        </article>
+
+        <article class="tile">
+          <h4 class="title"><i class="fa-solid fa-bug"></i> XSS Notes (Reflected/Stored)</h4>
+          <div class="meta">log: web · status: draft</div>
+          <p class="desc">Common payloads, testing tips, and safe reporting language. 🐛🛡️</p>
+          <div class="tags"><span class="tag">XSS</span><span class="tag">Web</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="#" onclick="alert('Building Something Awesome — Stay Tuned');return false;">Open 📖</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates" class="card" style="margin-top:18px">
+      <h3 style="margin-top:0">🏆 Certificates 🏅</h3>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">Udacity</span>
+          <div><strong>Fundamental Programming Certificate</strong> 📜</div>
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/udacity.pdf" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/udacity.pdf" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">TryHackMe</span>
+          <div><strong>Cybersecurity Fundamentals</strong> 🔒</div>
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/tryhackme-cybersecurity.pdf" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/tryhackme-cybersecurity.pdf" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">Coursera</span>
+          <div><strong>API Fundamentals</strong> 📸</div>
+          <img src="docs/API_Fundamental.jpg" alt="API Fundamentals Certificate" class="cert-preview">
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/API_Fundamental.jpg" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/API_Fundamental.jpg" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">Microsoft</span>
+          <div><strong>Azure Security</strong> 📸</div>
+          <img src="docs/Azure_Security.png" alt="Azure Security Certificate" class="cert-preview">
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/Azure_Security.png" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/Azure_Security.png" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">Linux Academy</span>
+          <div><strong>Linux Fundamentals</strong> 📸</div>
+          <img src="docs/Linux_Fundamental.png" alt="Linux Fundamentals Certificate" class="cert-preview">
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/Linux_Fundamental.png" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/Linux_Fundamental.png" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tag">Coursera</span>
+          <div><strong>Machine Learning</strong> 📸</div>
+          <img src="docs/Machine_Learning.png" alt="Machine Learning Certificate" class="cert-preview">
+        </div>
+        <div class="cert-actions">
+          <a class="btn btn-ghost" href="docs/Machine_Learning.png" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View 👀
+          </a>
+          <a class="btn btn-ghost" href="docs/Machine_Learning.png" download>
+            <i class="fa-solid fa-download"></i> Download 📥
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="grid section" style="margin-top:18px">
+      <div class="card">
+        <h3 style="margin-top:0">📧 Contact 💬</h3>
+        <form onsubmit="sendMessage(event)" style="display:grid;gap:10px;max-width:520px">
+          <label style="color:var(--muted)">Your name</label>
+          <input id="name" required placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid var(--glass);background:#0b1116;color:var(--text)">
+
+          <label style="color:var(--muted)">Your email</label>
+          <input id="email" type="email" required placeholder="you@example.com" style="padding:12px;border-radius:10px;border:1px solid var(--glass);background:#0b1116;color:var(--text)">
+
+          <label style="color:var(--muted)">Message</label>
+          <textarea id="message" rows="4" required placeholder="Hi Kidest, I'm interested in..." style="padding:12px;border-radius:10px;border:1px solid var(--glass);background:#0b1116;color:var(--text)"></textarea>
+
+          <button class="btn btn-primary" type="submit" style="width:max-content"><i class="fa-solid fa-paper-plane"></i> Send message 🚀</button>
+        </form>
+        <div style="margin-top:10px;color:var(--muted);font-size:14px">
+          Or email me at <strong>kidistdereje084@gmail.com</strong> 📧
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px">🔗 Links 🌐</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-ghost" href="https://github.com/kidest-08" target="_blank"><i class="fa-brands fa-github"></i> GitHub 👨‍💻</a>
+          <a class="btn btn-ghost" href="#" onclick="alert('Add your LinkedIn link here');return false;"><i class="fa-brands fa-linkedin"></i> LinkedIn 💼</a>
+          <a class="btn btn-ghost" href="#" onclick="alert('Add your X/Twitter link here');return false;"><i class="fa-brands fa-x-twitter"></i> X 🐦</a>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Kidest Dereje Alemayehu • 🔐 Cybersecurity Student • Built on Parrot OS 🐦
+    </footer>
+  </main>
+
+  <!-- Back to top minimal dot -->
+  <button id="toTop" aria-label="Back to top" title="Back to top">
+    <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
+  </button>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Typing effect
+    const lines = [
+      "🔐 Cybersecurity Student @ Bahir Dar University_",
+      "🐧 Parrot OS Enthusiast_",
+      "🛡️ OWASP ZAP Practitioner_",
+      "💻 Future Penetration Tester_",
+      "🔒 Linux Security Advocate_",
+      "🌐 Web Application Security Learner_"
+    ];
+    let i = 0, j = 0, erasing = false;
+    const el = document.getElementById('typing-text');
+    const typeSpeed = 60, eraseSpeed = 30, hold = 1200;
+    function tick() {
+      if (!erasing) {
+        if (j < lines[i].length) { el.textContent += lines[i][j++]; setTimeout(tick, typeSpeed); }
+        else { setTimeout(() => { erasing = true; tick(); }, hold); }
+      } else {
+        if (j > 0) { el.textContent = lines[i].slice(0, --j); setTimeout(tick, eraseSpeed); }
+        else { i = (i + 1) % lines.length; erasing = false; setTimeout(tick, 450); }
+      }
+    }
+    tick();
+
+    // About timeline animation with scroll-based trigger
+    const timeline = document.querySelector('.timeline');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    function checkTimelineVisibility() {
+      const rect = timeline.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+      if (isVisible) {
+        timelineItems.forEach((el, index) => {
+          if (!el.classList.contains('visible')) {
+            el.classList.add('visible');
+            console.log(`Timeline item ${index + 1} animated: ${el.textContent.substring(0, 30)}...`);
+          }
+        });
+      }
+    }
+
+    // Trigger on scroll and resize
+    window.addEventListener('scroll', checkTimelineVisibility);
+    window.addEventListener('resize', checkTimelineVisibility);
+
+    // Trigger on load with slight delay for rendering
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(checkTimelineVisibility, 100);
+    });
+
+    // Fallback: Check every 200ms for 6 seconds
+    let fallbackCount = 0;
+    const fallbackInterval = setInterval(() => {
+      timelineItems.forEach((el, index) => {
+        if (!el.classList.contains('visible')) {
+          el.classList.add('visible');
+          console.log(`Fallback: Animated item ${index + 1}: ${el.textContent.substring(0, 30)}...`);
+        }
+      });
+      fallbackCount++;
+      if (fallbackCount >= 30) clearInterval(fallbackInterval); // Stop after 6 seconds
+    }, 200);
+
+    // Contact -> mailto
+    function sendMessage(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if (!name || !email || !msg) { alert('Please fill the form.'); return; }
+      const subject = encodeURIComponent('Portfolio contact from ' + name);
+      const body = encodeURIComponent(msg + '\n\nReply to: ' + email);
+      window.location.href = 'mailto:kidistdereje084@gmail.com?subject=' + subject + '&body=' + body;
+    }
+
+    // Back-to-top button behavior
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 420) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
